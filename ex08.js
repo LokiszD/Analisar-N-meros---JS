@@ -2,6 +2,7 @@ let ntxt = window.document.querySelector('input#ntxt')
 let tab = window.document.querySelector('select#tabela')
 let restxt = window.document.querySelector('div#res')
 let guardaNum = []
+let aux
 
 function verificaNum(n){ //verifica se numero esta entre 1 e 100
 
@@ -10,10 +11,6 @@ function verificaNum(n){ //verifica se numero esta entre 1 e 100
     }else{
         return false
     }
-
-}
-
-function verificaNumIgual(n, l){ //verifica se tem numero igual adicionado (erro)
 
 }
 
@@ -29,9 +26,9 @@ function addValor(){ //add valor no array
             }
         }else{
             window.alert('Pode ser adicionado no máximo 10 números')
+            tab.innerHTML += `<option>Adicionados: ${guardaNum}</option>`
         }
 
-        tab.innerHTML += `<option>Adicionados: ${guardaNum}</option>`
     }else{
         window.alert('[ERRO] Número inválido')
     }
@@ -60,13 +57,14 @@ function resposta(){
     mediaVal = somaVal / guardaNum.length
 
     restxt.innerHTML = `
+    <p>Números Adicionados: ${guardaNum}</p>
     <p>Números cadastrados: ${guardaNum.length}</p>
-    <p>Maior valor informado: ${maiorVal}</p>
-    <p>Menor valor informado: ${menorVal}</p>
-    <p>Soma de todos os valores: ${somaVal}</p>
-    <p>Média de todos os valores: ${mediaVal}</p>
+    <p>Maior valor informado: ${maiorVal.replace('.',',')}</p> 
+    <p>Menor valor informado: ${menorVal.replace('.',',')}</p>
+    <p>Soma de todos os valores: ${somaVal.replace('.',',')}</p>
+    <p>Média de todos os valores: ${mediaVal.toFixed(2).replace('.',',')}</p>
     `
-
+    //trocar . por , na resposta e mostrar apenas duas casas depois da ,
 }
 
 function reset(){
